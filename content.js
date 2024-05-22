@@ -9,12 +9,26 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     if (message.type === "searchTask") {
         console.log('searchTask');
         var button = document.evaluate('//*[@id="task-index"]/div[2]/ul/li/a', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-        if (button) {
-            console.log("Button found.");
-            button.click();
-        } else {
-            console.error("Button not found.");
-        }
+
+        let attempts = 0;
+        const maxAttempts = 500 / 50; // xms / 50ms = y attempts
+
+        const interval = setInterval(function () {
+            console.log('setInterval button')
+            if (button) {
+                console.log("Button found.");
+                button.click();
+                clearInterval(interval); // Stop further attempts
+            } else {
+                console.log('setInterval button no found')
+                attempts++;
+                if (attempts >= maxAttempts) {
+                    console.error("Button not found.");
+                    clearInterval(interval); // Stop further attempts
+                    // Execute the else logic here, if needed
+                }
+            }
+        }, 50);
 
         setTimeout(function () {
             const task = checkForTask();

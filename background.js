@@ -1,7 +1,7 @@
 let countdownIntervalId;
 let countdownNumber;
 let intervalId;
-let refreshInterval = 7000;
+let refreshInterval = 6000;
 let isAutomationRunning = false;
 
 // Função para iniciar a automação
@@ -61,7 +61,7 @@ function searchTask() {
             console.log('BGsendMessage');
             chrome.tabs.sendMessage(tabs[0].id, { type: "searchTask" });
         });
-    }, 2500);
+    }, 1500);
 }
 
 async function playSound(source, volume = 1) {
