@@ -42,6 +42,7 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 
                 var estimatedTimeText = document.getElementsByClassName('ewok-estimated-task-weight')[0].innerText;
                 var estimatedTimeInSeconds = parseInt(estimatedTimeText.match(/\d+/)[0]) * 60;
+                if (estimatedTimeInSeconds === 0) estimatedTimeInSeconds = 20
 
 
                 var remainingTimeInSeconds = estimatedTimeInSeconds - runningTimeInSeconds;
