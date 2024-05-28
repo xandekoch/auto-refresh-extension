@@ -46,7 +46,7 @@
     "commands": {
         "toggle-automation": {
             "suggested_key": {
-                "default": "Ctrl+Shift+L"
+                "default": "Ctrl+I"
             },
             "description": "Iniciar e parar a automação"
         }
